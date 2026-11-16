@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Samaín La Cormelana</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#2d2b72,#23235b);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:25px;
+}
+
+.tarjeta{
+    width:100%;
+    max-width:520px;
+    background:white;
+    color:#333;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.logo{
+    width:100%;
+    display:block;
+}
+
+.contenido{
+    padding:30px;
+}
+
+.subtitulo-principal {
+    text-align:center;
+    color:#2d2b72;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+}
+
+.boton{
+    display:block;
+    text-decoration:none;
+    background:#2d2b72;
+    color:white;
+    padding:16px;
+    border-radius:12px;
+    text-align:center;
+    margin-bottom:14px;
+    font-size:19px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.boton:hover{
+    background:#4442a4;
+}
+
+/* BANDERAS EN SVG (compatibles con Windows) */
+.bandera {
+    width: 26px;
+    height: 18px;
+    vertical-align: -3px;
+    margin-right: 8px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.35);
+}
+
+/* ESTILOS DE LA SECCIÓN DE INFORMACIÓN */
+.info{
+    margin-top:22px;
+    border-top:1px solid #ddd;
+    padding-top:18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #333333;
+}
+
+/* Círculo con el azul corporativo idéntico al menú */
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #2d2b72;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tamaño y ajuste de las imágenes insertadas */
+.info-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.info a{
+    color:#2d2b72;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}
+
+/* BOTÓN DE INSTAGRAM */
+.instagram-container {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.btn-instagram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 2px solid #d8b35c;
+    color: #2d2b72;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s ease;
+}
+
+.btn-instagram:hover,
+.btn-instagram:active {
+    background: #2d2b72;
+    color: #ffffff;
+    border-color: #2d2b72;
+    transform: translateY(-2px);
+}
+
+.icon-ig {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.footer{
+    text-align:center;
+    margin-top:18px;
+    color:#888;
+    font-size:18px;
+}
+
+/* ======================================================
+   ESTILOS DEL EASTER EGG (PIXEL ART MODAL)
+====================================================== */
+.heart-trigger {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    user-select: none;
+}
+
+.heart-trigger:hover {
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 6px rgba(230, 0, 0, 0.7));
+}
+
+.pixel-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    padding: 15px;
+}
+
+.pixel-modal-content {
+    position: relative;
+    background: #1d1b40;
+    border: 4px solid #d8b35c;
+    box-shadow: 6px 6px 0px #2d2b72, -6px -6px 0px #d8b35c;
+    padding: 20px;
+    max-width: 90%;
+    width: 420px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.pixel-close-btn {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: #d8b35c;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+.pixel-close-btn:hover {
+    color: #fff;
+}
+
+.pixel-title {
+    margin-top: 5px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: #d8b35c;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#pixelVideo {
+    width: 100%;
+    border: 2px solid #2d2b72;
+    border-radius: 4px;
+    background-color: #000;
+    image-rendering: pixelated;
+    display: block;
+}
+
+/* ======================================================
+   AJUSTES RESPONSIVE PARA PANTALLAS DE MÓVIL (Sin Scroll)
+====================================================== */
+@media (max-height: 850px), (max-width: 600px) {
+    body {
+        padding: 3px 6px 6px 6px;
+    }
+    
+    .contenido {
+        padding: 12px 14px;
+    }
+    
+    .subtitulo-principal {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+    }
+    
+    .boton {
+        padding: 10px 12px;
+        font-size: 15px;
+        max-width: 76%;       /* Botones más estilizados y estrechos por los lados */
+        margin-left: auto;    /* Centrados automáticamente */
+        margin-right: auto;
+        margin-bottom: 6px;
+        border-radius: 8px;
+    }
+
+    .bandera {
+        width: 22px;
+        height: 15px;
+        vertical-align: -2px;
+        margin-right: 6px;
+    }
+    
+    .info {
+        margin-top: 8px;
+        padding-top: 8px;
+        gap: 6px;
+    }
+    
+    .icon-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .info-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .info-item {
+        font-size: 0.88rem;
+        gap: 8px;
+    }
+    
+    .instagram-container {
+        margin-top: 4px;
+    }
+    
+    .btn-instagram {
+        padding: 6px 14px;
+        font-size: 0.82rem;
+    }
+    
+    .footer {
+        margin-top: 6px;
+        font-size: 13px;
+    }
+}
+
+</style>
+
+<!-- Enlace para la instalación en móvil (PWA) -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2d2b72">
+<link rel="apple-touch-icon" href="LOGO.png">
+    
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+<img src="LOGO.png" class="logo" alt="Samaín La Cormelana">
+
+<div class="contenido">
+
+<div class="subtitulo-principal">
+- Especialistas en Ibérico -
+</div>
+
+<a class="boton" href="carta.html" target="_blank">
+<svg class="bandera" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect width="750" height="500" fill="#c60b1e"/>
+  <rect y="125" width="750" height="250" fill="#ffc400"/>
+</svg>Carta en Español
+</a>
+
+<a class="boton" href="carta-en.html" target="_blank">
+<svg class="bandera" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <clipPath id="t"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath>
+  <path d="M0 0v30h60V0z" fill="#012169"/>
+  <path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
+  <path d="M0 0l60 30m0-30L0 30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+  <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+  <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
+</svg>English Menu
+</a>
+
+<div class="info">
+
+  <div class="info-item">
+    <div class="icon-circle">
+        <img src="ubicacion.png" alt="Ubicación" class="info-icon">
+    </div>
+    <a href="https://maps.google.com/?q=Plaza+de+la+Cormelana+6+A+Coruña" target="_blank">
+      Plaza de la Cormelana nº6 · 15003 A Coruña
+    </a>
+  </div>
+
+  <div class="info-item">
+    <div class="icon-circle">
+        <img src="telefono.png" alt="Teléfono" class="info-icon">
+    </div>
+    <a href="tel:+34881125487">881 12 54 87</a>
+  </div>
+
+  <div class="info-item">
+    <div class="icon-circle">
+        <img src="reloj.png" alt="Horario" class="info-icon">
+    </div>
+    <span>Abierto todos los días</span>
+  </div>
+
+  <div class="instagram-container">
+    <a href="https://www.instagram.com/samaincormelana" target="_blank" rel="noopener noreferrer" class="btn-instagram">
+      <img src="instagram.svg" alt="Instagram Jamonería Samaín" class="icon-ig">
+      <span>Instagram</span>
+    </a>
+  </div>
+
+</div>
+
+<div class="footer">
+Gracias por visitarnos <span id="pixelHeart" class="heart-trigger" title="¡Un secreto!">❤️</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- VENTANA EMERGENTE (EASTER EGG) -->
+<div id="easterEggModal" class="pixel-modal-overlay">
+  <div class="pixel-modal-content">
+    <button class="pixel-close-btn" id="closeHeartModal">&times;</button>
+    <div class="pixel-frame">
+      <h3 class="pixel-title">👾 Jamonería Samaín 👾</h3>
+      <video id="pixelVideo" controls controlsList="nodownload" oncontextmenu="return false;" loop playsinline preload="metadata">
+        <source src="local-pixel.mp4" type="video/mp4">
+        Tu navegador no soporta vídeo.
+      </video>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT EXCLUSIVO PARA INDEX.HTML -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const heartTrigger = document.getElementById('pixelHeart');
+  const modalEasterEgg = document.getElementById('easterEggModal');
+  const closeBtnEasterEgg = document.getElementById('closeHeartModal');
+  const videoPixel = document.getElementById('pixelVideo');
+
+  if (heartTrigger && modalEasterEgg && videoPixel) {
+    const reseteartVideo = () => {
+      videoPixel.pause();
+      videoPixel.currentTime = 0;
+      videoPixel.muted = true;
+      modalEasterEgg.style.display = 'none';
+    };
+
+    reseteartVideo();
+
+    heartTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      modalEasterEgg.style.display = 'flex';
+      videoPixel.currentTime = 0;
+      videoPixel.muted = false;
+      videoPixel.volume = 1.0;
+
+      const playPromise = videoPixel.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          videoPixel.muted = true;
+          videoPixel.play();
+        });
+      }
+    });
+
+    if (closeBtnEasterEgg) closeBtnEasterEgg.addEventListener('click', reseteartVideo);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalEasterEgg) reseteartVideo();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalEasterEgg.style.display === 'flex') reseteartVideo();
+    });
+
+    window.addEventListener('pageshow', reseteartVideo);
+    window.addEventListener('pagehide', reseteartVideo);
+  }
+
+  // Bloqueos de seguridad solo en la portada
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'u')) {
+      e.preventDefault();
+    }
+  });
+});
+</script>
+</body>
+</html>

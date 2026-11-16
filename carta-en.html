@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Samaín La Cormelana</title>
+
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header-principal">
+  <div class="top-bar">
+    <div class="top-nav-left">
+      <!-- Hamburger Button -->
+      <button id="btn-menu-hamburguesa" class="btn-hamburguesa" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="top-nav-right">
+      <a href="carta.html" class="btn-flag" title="Español"><img src="https://flagcdn.com/es.svg" alt="ES"></a>
+      <a href="carta-en.html" class="btn-flag" title="English"><img src="https://flagcdn.com/gb.svg" alt="EN"></a>
+    </div>
+  </div>
+
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Samaín Jamonería" class="logo-brillo">
+  </div>
+
+  <h1>Our Menu</h1>
+  <p>- Iberian Products Specialists -</p>
+
+  <!-- SEASONAL DETAIL (Appears automatically when activated via class in <body>) -->
+  <div id="contenedor-temporada">
+    <img id="icono-izq" class="icono-temporada-grande" alt="Icono temporada">
+    <div id="detalle-temporada"></div>
+    <img id="icono-der" class="icono-temporada-grande" alt="Icono temporada">
+  </div>
+</header>
+
+<div class="menu-sticky">
+  <button class="flecha-menu izquierda" id="flecha-izquierda">‹</button>
+  <div class="contenedor-menu">
+    <section class="menu-categorias" id="menu-categorias"></section>
+  </div>
+  <button class="flecha-menu derecha" id="flecha-derecha">›</button>
+</div>
+
+<section class="buscador">
+  <input type="text" id="buscar" placeholder="🔍 Search product...">
+</section>
+
+<!-- SECCIÓN DESTINO SAMAÍN CORREGIDA E IGUALADA -->
+<section class="destino-samain">
+  <p class="texto-destino">
+    <img src="dados.png" alt="Dice" class="icono-dados-texto"> Can't decide?<br>
+    <strong>Let fate choose for you.</strong>
+  </p>
+  <button id="btn-destino" class="btn-destino">
+    <img src="dados.png" alt="Dice" class="icono-dados-btn"> SAMAÍN DESTINY
+  </button>
+</section>
+
+<div id="resultado-busqueda" class="resultado-busqueda"></div>
+
+<main id="carta"></main>
+
+<section class="alergenos">
+  <h2>⚠️ Allergen Information</h2>
+  <img src="alergenos.jpg" id="imagen-alergenos" alt="Allergen chart">
+  <p>🔎 Click on the image to enlarge.</p>
+</section>
+
+<!-- Allergen Modal -->
+<div id="modal-alergenos" class="modal-alergenos">
+  <div class="modal-contenido">
+    <span id="cerrar-modal">&times;</span>
+    <img src="alergenos.jpg" alt="Allergens">
+    <div class="mensaje-alergenos">
+      ⚠️ <strong>Please inform our staff before placing your order if you have any food allergies.</strong>
+    </div>
+  </div>
+</div>  
+
+<!-- Modal Destino -->
+<div id="modal-destino" class="modal-destino">
+  <div class="ventana-destino">
+    <button class="cerrar-destino" id="cerrar-destino">✕</button>
+    
+    <h2>
+      <span class="icono-cubiertos-titulo"><img src="cubiertos.png" alt="Cubiertos"></span><br>
+      How many guests are you?
+    </h2>
+    
+    <button class="opcion-comensales" data-comensales="1">
+      <img src="1.png" alt="Just me" class="icono-comensal"> Just me</button>
+    
+    <button class="opcion-comensales" data-comensales="2">
+      <img src="2.png" alt="Two people" class="icono-comensal"> Two people</button>
+    
+    <button class="opcion-comensales" data-comensales="3">
+      <img src="3.png" alt="Three or more" class="icono-comensal"> Three or more</button>
+  </div>
+</div>
+
+<div id="resultado-destino" class="resultado-destino">
+  <div class="tarjeta-destino">
+        <button type="button" class="cerrar-resultado" aria-label="Close">✕</button>
+    <div class="ruleta-destino">
+      <div class="flecha-ruleta" id="flecha-ruleta">
+        <span class="puntero">▼</span>
+      </div>
+      
+      <div class="disco-ruleta" id="disco-ruleta">
+        <div class="icono-ruleta"><img src="tostas.png" alt="Tostas"></div>
+        <div class="icono-ruleta"><img src="tablas.png" alt="Entrantes"></div>
+        <div class="icono-ruleta"><img src="raciones.png" alt="Raciones"></div>
+        <div class="icono-ruleta"><img src="quesos.png" alt="Quesos"></div>
+        <div class="icono-ruleta"><img src="piadinas.png" alt="Piadinas"></div>
+        <div class="icono-ruleta"><img src="piadinas_dulces.png" alt="Piadinas Dulces"></div>
+        <div class="icono-ruleta"><img src="bocadillos.png" alt="Bocadillos"></div>
+        <div class="icono-ruleta"><img src="postres.png" alt="Postres"></div>
+      </div>
+    </div>
+    
+    <p class="titulo-destino">✨ Fate has decided...</p>
+    <div id="categoria-destino" class="categoria-destino"></div>
+    <h1 id="nombre-destino"></h1>
+    <p id="descripcion-destino"></p>
+    <div id="precio-destino"></div>
+    <small>Tap anywhere to continue</small>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-container">
+        
+    <a href="https://www.instagram.com/samaincormelana" target="_blank" rel="noopener noreferrer" class="btn-instagram">
+      <img src="instagram.svg" alt="Instagram Jamonería Samaín" class="icon-ig">
+      <span>Instagram</span>
+    </a>
+
+    <span>Jamonería Samaín · A Coruña ·</span>
+    <span>© 2026 Samaincormelana</span>
+  </div>
+</footer>  
+
+<div id="confeti"></div>
+
+<!-- MAIN HAMBURGER NAVIGATION MODAL -->
+<div id="modal-menu-principal" class="modal-contacto hidden">
+  <div class="modal-contacto-content modal-menu-content">
+    <span id="cerrar-menu-principal" class="close-btn">&times;</span>
+    <h2>MENU</h2>
+        <nav class="nav-modal-links">
+        <a href="index.html" class="link-modal-item">
+        <img src="inicio.png" alt="Inicio" class="icono-menu-lateral">Home</a>
+  
+        <button id="btn-contacto-carta" type="button" class="link-modal-item">
+        <img src="contacto.png" alt="Contacto" class="icono-menu-lateral">Contact</button>
+  
+        <button id="btn-galeria" type="button" class="link-modal-item">
+        <img src="galeria.png" alt="Galería" class="icono-menu-lateral">Gallery</button>
+  
+        <button id="btn-tienda" type="button" class="link-modal-item">
+        <img src="tienda.png" alt="Tienda" class="icono-menu-lateral">Shop</button>
+  </nav>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div id="modal-contacto" class="modal-contacto hidden">
+  <div class="modal-contacto-content">
+    <span class="close-btn" id="cerrar-contacto">&times;</span>
+    
+    <h2>CONTACT</h2>
+    
+    <div class="contacto-grid">
+      
+      <div class="contacto-item">
+        <div class="icon-circle">
+          <img src="telefono.png" alt="Phone" class="info-icon">
+        </div>
+        <div class="contacto-info">
+          <p class="contacto-label">PHONE</p>
+          <p><a href="tel:+34881125487" class="contacto-val">881 12 54 87</a></p>
+        </div>
+      </div>
+
+      <div class="contacto-item">
+        <div class="icon-circle">
+          <img src="ubicacion.png" alt="Location" class="info-icon">
+        </div>
+        <div class="contacto-info">
+          <p class="contacto-label">ADDRESS</p>
+          <p><a href="https://maps.google.com/?q=Plaza+de+la+Cormelana+6+A+Coruña" target="_blank" class="contacto-val">Plaza de la Cormelana Nº6 <br>15003 · A Coruña</a></p>
+        </div>
+      </div>
+
+      <div class="contacto-item">
+        <div class="icon-circle">
+          <img src="reloj.png" alt="Opening Hours" class="info-icon">
+        </div>
+        <div class="contacto-info">
+          <p class="contacto-label">OPENING HOURS</p>
+          <p class="contacto-val"><strong>Monday to Friday</strong><br> 10.00 to Closing</p>
+          <p class="contacto-val"><strong>Weekends & Holidays</strong><br> 11.00 to Closing</p>
+        </div>
+      </div>
+
+      <div class="contacto-item">
+        <div class="icon-circle">
+          <img src="silla.png" alt="Accessibility" class="info-icon">
+        </div>
+        <div class="contacto-info">
+          <p class="contacto-label">ACCESSIBILITY</p>
+          <p class="contacto-val">Fully accessible venue<br>Step-free entrance and accessible restroom</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  
+<!-- Gallery Modal -->
+<div id="modal-galeria" class="modal-contacto hidden">
+    <div class="modal-galeria-content">
+        <span class="close-btn" id="close-galeria">&times;</span>
+        <h2>OUR PRODUCTS</h2>
+        
+        <div class="galeria-grid">
+            <div class="galeria-item">
+                <img src="jamon.jpeg" alt="Iberian Ham Jamonería Samaín" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="cecina.jpeg" alt="Cured beef cecina" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="anchoas.jpeg" alt="House anchovies" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="tabla.jpeg" alt="Iberian charcuterie board" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="tablas.jpeg" alt="Cold cuts and cheese platters" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="samain.jpeg" alt="Special dish Jamonería Samaín" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="mesa.jpeg" alt="Table with food variety" loading="lazy">
+            </div>
+            <div class="galeria-item">
+                <img src="Quesos4.jpeg" alt="Gouda Trufado" loading="lazy">
+            </div>
+        </div>
+    </div>
+</div>  
+
+<!-- Image Viewer Modal -->
+<div id="modal-visor-imagen" class="modal-visor hidden">
+  <span id="cerrar-visor" class="cerrar-visor">&times;</span>
+  <img id="imagen-ampliada" src="" alt="Enlarged image" />
+</div>  
+
+<!-- TAKEAWAY & SHOP MODAL -->
+<div id="modal-tienda" class="modal-contacto hidden">
+  <div class="modal-contacto-content">
+    <span class="close-btn" id="cerrar-tienda">&times;</span>
+    
+    <h2>TAKEAWAY & SHOP</h2>
+    
+    <!-- Gourmet Products -->
+    <div class="tienda-seccion">
+      <div class="icon-circle">
+        <img src="copa.png" alt="Gourmet Products" class="info-icon">
+      </div>
+      <div class="tienda-info">
+        <p class="tienda-titulo">GOURMET PRODUCTS</p>
+        <p>We offer a range of gourmet products for retail sale.</p>
+      </div>
+    </div>
+
+    <!-- Takeaway Menu -->
+    <div class="tienda-seccion">
+      <div class="icon-circle">
+        <img src="bolsa.png" alt="Takeaway Menu" class="info-icon">
+      </div>
+      <div class="tienda-info">
+        <p class="tienda-titulo">TAKEAWAY MENU</p>
+        <p>You can order our menu items to take away.</p>
+      </div>
+    </div>
+
+    <!-- Featured Event Box -->
+    <div class="tienda-evento-destacado">
+      <div class="icon-circle">
+        <img src="fiesta.png" alt="Events" class="info-icon">
+      </div>
+      <div class="tienda-info">
+        <p class="tienda-titulo-destacado">HAVING AN EVENT OR CRAVING SOMETHING SPECIAL?</p>
+        <p>Reserve our products and platters for birthdays, celebrations, and special events... or simply to treat yourself because... <strong>you deserve it!</strong></p>
+      </div>
+    </div>
+
+    <!-- Call to Action Footer -->
+    <p class="tienda-contacto-texto">Call to reserve or speak with our staff:</p>
+    
+    <div class="tienda-telefono-container">
+      <a href="tel:+34881125487" class="tienda-telefono">
+        <div class="icon-circle" style="width: 36px; height: 36px;">
+          <img src="telefono.png" alt="Phone" class="info-icon" style="width: 18px; height: 18px;">
+        </div>
+        <span>881 12 54 87</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script src="menu-en.js"></script>
+<script src="script.js"></script>
+<script src="destino.js"></script>
+<script src="compartir.js"></script>  
+
+</body>
+</html>
